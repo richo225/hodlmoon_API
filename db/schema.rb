@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20180320195624) do
   enable_extension "plpgsql"
 
   create_table "transactions", force: :cascade do |t|
-    t.string "coin"
-    t.money "amount", scale: 2
-    t.string "currency"
-    t.string "exchange"
+    t.string "coin", null: false
+    t.money "amount", scale: 2, null: false
+    t.string "currency", null: false
+    t.string "exchange", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
