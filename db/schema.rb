@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20180320195624) do
 
   create_table "transactions", force: :cascade do |t|
     t.string "coin"
-    t.integer "amount"
+    t.money "amount", scale: 2
     t.string "currency"
     t.string "exchange"
     t.datetime "created_at", null: false
