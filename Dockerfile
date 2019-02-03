@@ -9,9 +9,7 @@ RUN mkdir /app
 WORKDIR /app
 
 # Copy gemfile and install gems
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
-
+COPY Gemfile* ./
 RUN bundle install
 
 # Copy application code
