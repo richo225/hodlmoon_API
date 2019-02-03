@@ -11,10 +11,13 @@ WORKDIR /app
 # Copy gemfile and install gems
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
+
 RUN bundle install
 
 # Copy application code
-COPY . /app
+COPY . .
+
+EXPOSE 3000
 
 # Run the app
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

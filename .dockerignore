@@ -1,0 +1,11 @@
+.git
+
+/log/*
+/tmp/*
+
+tmp/pids/sidekiq.pid
+
+vendor/bundle
+
+public/assets
+public/system
