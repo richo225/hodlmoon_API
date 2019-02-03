@@ -16,10 +16,13 @@ jobs:
       - checkout
       - run:
           name: Start up docker-compose
-          command: make build
+          command: make compose-run
       - run:
           name: Wait for dependencies to start...
           command: sleep 20
+      - run:
+          name: Setup db
+          command: make db-setup
       - run:
           name: Run tests
           command: make tests
