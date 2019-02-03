@@ -1,0 +1,25 @@
+version: 2
+workflows:
+  version: 2
+  hodlmoon_api_flow:
+    jobs:
+      - build-and-test
+
+hodlmoon_api_env: &hodlmoon_api_env
+  machine: true
+  working_directory: ~/hodlmoon_api
+
+jobs:
+  build-and-test:
+    <<: *hodlmoon_api_env
+    steps:
+      - checkout
+      - run:
+          name: Start up docker-compose
+          command: make build
+      - run:
+          name: Wait for dependencies to start...
+          command: sleep 20
+      - run:
+          name: Run tests
+          command: make tests
