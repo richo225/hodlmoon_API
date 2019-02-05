@@ -22,28 +22,31 @@ ActiveRecord::Schema.define(version: 20190205194418) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "process"
+    t.string "coin"
+    t.integer "amount"
+    t.string "currency"
+    t.string "exchange"
+    t.integer "coin_id"
+    t.integer "portfolio_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coin_id"], name: "index_orders_on_coin_id"
+    t.index ["portfolio_id"], name: "index_orders_on_portfolio_id"
+  end
+
   create_table "portfolios", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
-  create_table "transactions", force: :cascade do |t|
-    t.string "coin", null: false
-    t.money "amount", scale: 2, null: false
-    t.string "currency", null: false
-    t.string "exchange", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
   end
 
   add_foreign_key "portfolios", "users"
