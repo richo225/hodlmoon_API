@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20190205194418) do
 
   create_table "orders", force: :cascade do |t|
     t.string "process"
-    t.string "coin"
     t.integer "amount"
     t.string "currency"
     t.string "exchange"

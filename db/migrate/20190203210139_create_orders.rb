@@ -4,7 +4,6 @@ class CreateOrders < ActiveRecord::Migration[5.2]
   def change
     create_table :orders do |t|
       t.string :process
-      t.string :coin
       t.integer :amount
       t.string :currency
       t.string :exchange
