@@ -17,9 +17,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
   username: postgres
   password:
+  host: localhost
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -84,7 +84,7 @@ test: &test
 production:
   <<: *default
   database: hodlmoon_API_production
-  username: hodlmoon_API
+  username: <%= ENV['HODLMOON_API_DATABASE_USERNAME'] %>
   password: <%= ENV['HODLMOON_API_DATABASE_PASSWORD'] %>
 
 cucumber:
