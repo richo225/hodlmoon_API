@@ -76,7 +76,7 @@ class OrdersController < ApplicationController
       :coin,
       :amount,
       :price,
-      :currency,
+      :price_currency,
       :exchange
     )
   end
