@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = current_user.orders
   end
 
   # GET /orders/1
@@ -66,11 +66,18 @@ class OrdersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_order
-    @order = Order.find(params[:id])
+    @order = current_user.orders.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
-    params.require(:order).permit(:process, :coin, :amount, :currency, :exchange)
+    params.require(:order).permit(
+      :process,
+      :coin,
+      :amount,
+      :price,
+      :currency,
+      :exchange
+    )
   end
 end
