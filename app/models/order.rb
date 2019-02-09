@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
-  belongs_to :portfolio
+  belongs_to :user
   belongs_to :coin
 
   validates_numericality_of :amount, greater_than: 0

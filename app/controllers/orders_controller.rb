@@ -5,13 +5,11 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[show edit update destroy]
 
   # GET /orders
-  # GET /orders.json
   def index
     @orders = current_user.orders
   end
 
   # GET /orders/1
-  # GET /orders/1.json
   def show; end
 
   # GET /orders/new
@@ -23,7 +21,6 @@ class OrdersController < ApplicationController
   def edit; end
 
   # POST /orders
-  # POST /orders.json
   def create
     @order = Order.new(order_params)
 
@@ -39,27 +36,18 @@ class OrdersController < ApplicationController
   end
 
   # PATCH/PUT /orders/1
-  # PATCH/PUT /orders/1.json
   def update
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'order was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
-      else
-        format.html { render :edit }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+    if @order.update(order_params)
+      redirect_to @order, notice: 'order was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /orders/1
-  # DELETE /orders/1.json
   def destroy
     @order.destroy
-    respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'order was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to orders_url, notice: 'order was successfully destroyed.'
   end
 
   private
