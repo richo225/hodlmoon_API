@@ -11,6 +11,7 @@ gem 'rails', '~> 5.1.5'
 gem 'rspec-rails', '~> 3.7.2'
 gem 'money-rails', '~>1.12'
 gem 'dotenv-rails'
+gem 'httparty', '~> 0.16.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -20,12 +21,10 @@ gem 'dotenv-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
 group :development, :test do
   gem 'coveralls', require: false
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
-  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'pry'
   gem 'pry-byebug'
