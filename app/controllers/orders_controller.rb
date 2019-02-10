@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    @order = current_user.orders.new
   end
 
   # GET /orders/1/edit
@@ -22,15 +22,13 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    @order = Order.new(order_params)
+    @order = current_user.orders.new(order_params)
 
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,7 +59,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(
       :process,
-      :coin,
+      :coin_id,
       :amount,
       :price,
       :price_currency,

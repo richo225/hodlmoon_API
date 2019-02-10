@@ -86,15 +86,15 @@ RSpec.describe OrdersController, type: :controller do
       let(:new_attributes) { { exchange: 'new_exchange' } }
 
       it 'updates the requested order' do
-        order = create(:order)
+        order = create(:order, user: user)
 
         put :update, params: { id: order.to_param, order: new_attributes }
         order.reload
-        skip('Add assertions for updated state')
+        expect(order.exchange).to eq('new_exchange')
       end
 
       it 'redirects to the order' do
-        order = create(:order)
+        order = create(:order, user: user)
 
         put :update, params: { id: order.to_param, order: new_attributes }
         expect(response).to redirect_to(order)
@@ -103,7 +103,7 @@ RSpec.describe OrdersController, type: :controller do
 
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        order = create(:order)
+        order = create(:order, user: user)
 
         put :update, params: { id: order.to_param, order: { amount: 'wrong_data_type' } }
         expect(response).to be_successful
@@ -121,7 +121,7 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     it 'redirects to the orders list' do
-      order = create(:order)
+      order = create(:order, user: user)
 
       delete :destroy, params: { id: order.to_param }
       expect(response).to redirect_to(orders_url)
