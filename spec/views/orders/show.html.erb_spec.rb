@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "orders/show", type: :view do
   before(:each) do
-    @order = assign(:order, Order.create!())
+    @order = create(:order)
   end
 
   it "renders attributes in <p>" do
