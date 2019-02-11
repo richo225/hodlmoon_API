@@ -31,7 +31,7 @@ namespace :coins do
     puts "#{coins.count} total coins found"
 
     puts 'Importing coins to database......'
-    values = hash.map(&:symbolize_keys)
+    values = coins.map(&:symbolize_keys)
     Coin.import(COIN_COLUMNS, values)
 
     puts "Completed in #{Time.now - start_time} seconds"
