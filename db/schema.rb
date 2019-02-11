@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190211144939) do
+ActiveRecord::Schema.define(version: 20190211220646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,14 +37,9 @@ ActiveRecord::Schema.define(version: 20190211144939) do
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "EUR", null: false
     t.bigint "user_id"
+    t.bigint "coin_id"
+    t.index ["coin_id"], name: "index_orders_on_coin_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
-  create_table "portfolios", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,5 +48,6 @@ ActiveRecord::Schema.define(version: 20190211144939) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "orders", "coins"
   add_foreign_key "orders", "users"
 end
