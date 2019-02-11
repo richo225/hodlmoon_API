@@ -31,6 +31,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'shoulda-matchers'
+  gem 'faker', '~> 1.9.1'
 end
 
 group :development do
