@@ -10,16 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190209233813) do
+ActiveRecord::Schema.define(version: 20190211144939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "coins", force: :cascade do |t|
     t.string "name"
-    t.string "alpha"
+    t.string "symbol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.integer "circulating_supply"
+    t.integer "total_supply"
+    t.integer "max_supply"
+    t.integer "cmc_rank"
   end
 
   create_table "orders", force: :cascade do |t|
