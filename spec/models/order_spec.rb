@@ -9,6 +9,16 @@ RSpec.describe 'Order' do
       expect(order).to be_valid
     end
 
+    it 'is invalid without a process' do
+      order = build(:order, process: nil)
+      expect(order).to_not be_valid
+    end
+
+    it 'is invalid with an incorrect process' do
+      order = build(:order, process: 'incorrect_process')
+      expect(order).to_not be_valid
+    end
+
     it 'is invalid without coin' do
       order = build(:order, coin: nil)
       expect(order).to_not be_valid
