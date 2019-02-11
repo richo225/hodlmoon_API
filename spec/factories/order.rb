@@ -3,8 +3,8 @@
 #     process 'buy'
 #     coin { create(:coin) }
 #     amount 5
-#     currency 'GBP'
+#     price 2.23
 #     exchange 'exchange'
-#     portfolio { create(:portfolio) }
+#     user { create(:user) }
 #   end
 # end

@@ -1,3 +1,3 @@
 class User < ApplicationRecord
   has_one :portfolio
-end
+  has_many :orders
