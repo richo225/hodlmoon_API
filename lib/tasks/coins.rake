@@ -21,7 +21,16 @@ namespace :coins do
 
   desc 'Retrieve the latest coins from CoinMarkertCap and update db'
   task update_db: :environment do
-    COIN_COLUMNS = %i[id name].freeze
+    COIN_COLUMNS = %i[
+      id
+      name
+      symbol
+      slug
+      circulating_supply
+      total_supply
+      max_supply
+      cmc_rank
+    ]
 
     start_time = Time.now
 
@@ -32,7 +41,9 @@ namespace :coins do
 
     puts 'Importing coins to database......'
     values = coins.map(&:symbolize_keys)
-    Coin.import(COIN_COLUMNS, values)
+
+    UPSERT_COLUMNS = COIN_COLUMNS - [:id]
+    Coin.import(COIN_COLUMNS, values, on_duplicate_key_update: [UPSERT_COLUMNS])
 
     puts "Completed in #{Time.now - start_time} seconds"
   end
