@@ -5,15 +5,19 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'activerecord-import', '~> 0.28.0'
+gem 'devise_token_auth'
+gem 'dotenv-rails'
+gem 'httparty', '~> 0.16.2'
+gem 'money-rails', '~>1.12'
+gem 'omniauth-github'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.1.5'
 gem 'rspec-rails', '~> 3.7.2'
-gem 'money-rails', '~>1.12'
-gem 'dotenv-rails'
-gem 'httparty', '~> 0.16.2'
 gem 'whenever'
-gem 'activerecord-import', '~> 0.28.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -28,15 +32,14 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails'
+  gem 'faker', '~> 1.9.1'
   gem 'pry'
   gem 'pry-byebug'
   gem 'shoulda-matchers'
-  gem 'faker', '~> 1.9.1'
 end
 
 group :development do
   gem 'listen', '~> 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

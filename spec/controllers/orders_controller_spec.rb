@@ -23,7 +23,10 @@ RSpec.describe OrdersController, type: :controller do
     }
   end
 
-  before { sign_in(user) }
+  before do
+    sign_in(user)
+    request.headers.merge!(user.create_new_auth_token)
+  end
 
   describe 'GET #index' do
     it 'returns a success response' do
