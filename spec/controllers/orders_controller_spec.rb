@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe OrdersController, type: :controller do
@@ -18,113 +16,101 @@ RSpec.describe OrdersController, type: :controller do
   end
   let(:invalid_attributes) do
     {
-      amount: 5,
-      price: 1.20
+      process: 'invalid_process'
     }
   end
 
-  before { sign_in(user) }
-
-  describe 'GET #index' do
-    it 'returns a success response' do
-      create(:order, user: user)
-
-      get :index
-      expect(response).to be_successful
-    end
+  before do
+    sign_in(user)
+    request.headers.merge!(user.create_new_auth_token)
   end
 
-  describe 'GET #show' do
-    it 'returns a success response' do
+  describe "GET #index" do
+    it "returns a success response" do
       order = create(:order, user: user)
 
-      get :show, params: { id: order.to_param }
-      expect(response).to be_successful
+      get :index, params: {}
+      expect(response).to be_success
     end
   end
 
-  describe 'GET #new' do
-    it 'returns a success response' do
-      get :new, params: {}
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET #edit' do
-    it 'returns a success response' do
+  describe "GET #show" do
+    it "returns a success response" do
       order = create(:order, user: user)
+      get :show, params: {id: order.to_param}
 
-      get :edit, params: { id: order.to_param }
-      expect(response).to be_successful
+      expect(response).to be_success
     end
   end
 
-  describe 'POST #create' do
-    context 'with valid params' do
-      it 'creates a new order' do
-        expect do
-          post :create, params: { order: valid_attributes }
-        end.to change(user.orders, :count).by(1)
+  describe "POST #create" do
+    context "with valid params" do
+      it "creates a new Order" do
+        expect {
+          post :create, params: {order: valid_attributes}
+        }.to change(user.orders, :count).by(1)
       end
 
-      it 'redirects to the created order' do
-        post :create, params: { order: valid_attributes }
-        expect(response).to redirect_to(user.orders.last)
+      it "renders a JSON response with the new order" do
+        post :create, params: {order: valid_attributes}
+
+        expect(response).to have_http_status(:created)
+        expect(response.content_type).to eq('application/json')
+        expect(response.location).to eq(order_url(user.orders.last))
       end
     end
 
-    context 'with invalid params' do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { order: invalid_attributes }
-        expect(response).to be_successful
+    context "with invalid params" do
+      it "renders a JSON response with errors for the new order" do
+        post :create, params: {order: invalid_attributes}
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.content_type).to eq('application/json')
       end
     end
   end
 
-  describe 'PUT #update' do
-    context 'with valid params' do
-      let(:new_attributes) { { exchange: 'new_exchange' } }
+  describe "PUT #update" do
+    context "with valid params" do
+      let(:new_attributes) {
+        { exchange: 'new_exchange' }
+      }
 
-      it 'updates the requested order' do
+      it "updates the requested order" do
         order = create(:order, user: user)
+        put :update, params: {id: order.to_param, order: new_attributes}
 
-        put :update, params: { id: order.to_param, order: new_attributes }
         order.reload
         expect(order.exchange).to eq('new_exchange')
       end
 
-      it 'redirects to the order' do
+      it "renders a JSON response with the order" do
         order = create(:order, user: user)
+        put :update, params: {id: order.to_param, order: valid_attributes}
 
-        put :update, params: { id: order.to_param, order: new_attributes }
-        expect(response).to redirect_to(order)
+        expect(response).to have_http_status(:ok)
+        expect(response.content_type).to eq('application/json')
       end
     end
 
-    context 'with invalid params' do
-      it "returns a success response (i.e. to display the 'edit' template)" do
+    context "with invalid params" do
+      it "renders a JSON response with errors for the order" do
         order = create(:order, user: user)
+        put :update, params: {id: order.to_param, order: invalid_attributes}
 
-        put :update, params: { id: order.to_param, order: { amount: 'wrong_data_type' } }
-        expect(response).to be_successful
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.content_type).to eq('application/json')
       end
     end
   end
 
-  describe 'DELETE #destroy' do
-    it 'destroys the requested order' do
+  describe "DELETE #destroy" do
+    it "destroys the requested order" do
       order = create(:order, user: user)
-
-      expect do
-        delete :destroy, params: { id: order.to_param }
-      end.to change(user.orders, :count).by(-1)
-    end
-
-    it 'redirects to the orders list' do
-      order = create(:order, user: user)
-
-      delete :destroy, params: { id: order.to_param }
-      expect(response).to redirect_to(orders_url)
+      expect {
+        delete :destroy, params: {id: order.to_param}
+      }.to change(user.orders, :count).by(-1)
     end
   end
+
 end
