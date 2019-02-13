@@ -7,6 +7,8 @@ VCR.configure do |config|
     record: ENV['CIRCLECI'].present? ? :none : :new_episodes
   }
 
+  config.filter_sensitive_data('<COINMARKETCAP_API_KEY>') { ENV['COINMARKETCAP_API_KEY'] }
+
   config.ignore_request do |request|
     URI(request.uri).path == '/__identify__'
   end
