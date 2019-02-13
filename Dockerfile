@@ -15,7 +15,7 @@ RUN gem install bundler
 RUN bundler update --bundler
 
 RUN bundle config --global silence_root_warning 1
-RUN bundle install --jobs 20 --retry 5
+RUN bundle _1.17.3_ install --jobs 20 --retry 5
 
 # Copy application code
 COPY . .
