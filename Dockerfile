@@ -10,7 +10,11 @@ WORKDIR /app
 
 # Copy gemfile and install gems
 COPY Gemfile* ./
-RUN bundle install
+RUN gem update --system
+RUN gem install bundler
+
+RUN bundle config --global silence_root_warning 1
+RUN bundle install --jobs 20 --retry 5
 
 # Copy application code
 COPY . .
