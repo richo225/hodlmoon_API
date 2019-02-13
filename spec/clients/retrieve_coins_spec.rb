@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe RetrieveCoins do
+RSpec.describe RetrieveCoins, :vcr do
   let(:response) { described_class.call }
 
   describe '#call' do
