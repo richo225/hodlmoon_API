@@ -9,3 +9,5 @@ vendor/bundle
 
 public/assets
 public/system
+
+.env

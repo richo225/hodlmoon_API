@@ -15,6 +15,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Set .env file
+          command: cp .env.dist .env
+      - run:
           name: Start up docker-compose
           command: make compose-run
       - run:
