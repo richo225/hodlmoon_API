@@ -1,5 +1,5 @@
 # Base image
-FROM ruby:2.3.6
+FROM ruby:2.6
 
 # Install dependencies
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
@@ -10,7 +10,10 @@ WORKDIR /app
 
 # Copy gemfile and install gems
 COPY Gemfile* ./
-RUN bundle install
+
+RUN gem update --system && \
+gem update bundler && \
+bundle install --jobs 4 --retry 5
 
 # Copy application code
 COPY . .
