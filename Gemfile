@@ -10,8 +10,8 @@ gem 'devise_token_auth'
 gem 'dotenv-rails'
 gem 'httparty', '~> 0.16.2'
 gem 'money-rails', '~>1.12'
-gem 'omniauth-github'
 gem 'omniauth-facebook'
+gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
@@ -35,6 +35,7 @@ group :development, :test do
   gem 'faker', '~> 1.9.1'
   gem 'pry'
   gem 'pry-byebug'
+  gem 'rack-cors'
   gem 'shoulda-matchers'
 end
 
