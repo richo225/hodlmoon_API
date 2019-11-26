@@ -1,0 +1,16 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Delete merged branch
+      uses: SvanBoxel/delete-merged-branch@v1.3.3
+    - name: Add an issue reference
+      uses: kentaro-m/add-an-issue-reference-action@v1.0.0
+
+
