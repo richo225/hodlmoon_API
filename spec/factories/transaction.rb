@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :order do
+  factory :transaction do
     process { 'buy' }
     coin { create(:coin) }
     amount { 5 }

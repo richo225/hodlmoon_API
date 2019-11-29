@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe OrdersController, type: :controller do
+RSpec.describe TransactionsController, type: :controller do
   let(:user) { create(:user) }
   let(:coin) { create(:coin) }
 
@@ -27,7 +27,7 @@ RSpec.describe OrdersController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      order = create(:order, user: user)
+      transaction = create(:transaction, user: user)
 
       get :index, params: {}
       expect(response).to be_success
@@ -36,8 +36,8 @@ RSpec.describe OrdersController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      order = create(:order, user: user)
-      get :show, params: {id: order.to_param}
+      transaction = create(:transaction, user: user)
+      get :show, params: {id: transaction.to_param}
 
       expect(response).to be_success
     end
@@ -45,24 +45,24 @@ RSpec.describe OrdersController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Order" do
+      it "creates a new transaction" do
         expect {
-          post :create, params: {order: valid_attributes}
-        }.to change(user.orders, :count).by(1)
+          post :create, params: {transaction: valid_attributes}
+        }.to change(user.transactions, :count).by(1)
       end
 
-      it "renders a JSON response with the new order" do
-        post :create, params: {order: valid_attributes}
+      it "renders a JSON response with the new transaction" do
+        post :create, params: {transaction: valid_attributes}
 
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(order_url(user.orders.last))
+        expect(response.location).to eq(transaction_url(user.transactions.last))
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new order" do
-        post :create, params: {order: invalid_attributes}
+      it "renders a JSON response with errors for the new transaction" do
+        post :create, params: {transaction: invalid_attributes}
 
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
@@ -76,17 +76,17 @@ RSpec.describe OrdersController, type: :controller do
         { exchange: 'new_exchange' }
       }
 
-      it "updates the requested order" do
-        order = create(:order, user: user)
-        put :update, params: {id: order.to_param, order: new_attributes}
+      it "updates the requested transaction" do
+        transaction = create(:transaction, user: user)
+        put :update, params: {id: transaction.to_param, transaction: new_attributes}
 
-        order.reload
-        expect(order.exchange).to eq('new_exchange')
+        transaction.reload
+        expect(transaction.exchange).to eq('new_exchange')
       end
 
-      it "renders a JSON response with the order" do
-        order = create(:order, user: user)
-        put :update, params: {id: order.to_param, order: valid_attributes}
+      it "renders a JSON response with the transaction" do
+        transaction = create(:transaction, user: user)
+        put :update, params: {id: transaction.to_param, transaction: valid_attributes}
 
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
@@ -94,9 +94,9 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the order" do
-        order = create(:order, user: user)
-        put :update, params: {id: order.to_param, order: invalid_attributes}
+      it "renders a JSON response with errors for the transaction" do
+        transaction = create(:transaction, user: user)
+        put :update, params: {id: transaction.to_param, transaction: invalid_attributes}
 
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
@@ -105,11 +105,11 @@ RSpec.describe OrdersController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested order" do
-      order = create(:order, user: user)
+    it "destroys the requested transaction" do
+      transaction = create(:transaction, user: user)
       expect {
-        delete :destroy, params: {id: order.to_param}
-      }.to change(user.orders, :count).by(-1)
+        delete :destroy, params: {id: transaction.to_param}
+      }.to change(user.transactions, :count).by(-1)
     end
   end
 

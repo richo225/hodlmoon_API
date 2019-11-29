@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Order < ApplicationRecord
+class Transaction < ApplicationRecord
   PROCESSES = %w[buy sell].freeze
 
   belongs_to :user

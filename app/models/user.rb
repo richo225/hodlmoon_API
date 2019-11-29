@@ -6,6 +6,5 @@ class User < ApplicationRecord
          :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
 
-  has_one :portfolio
-  has_many :orders
+  has_many :transactions
 end
