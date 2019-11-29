@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Orders", type: :request do
+RSpec.describe "users", type: :request do
   # let(:user) { create(:user) }
   #
   # # before do
@@ -8,9 +8,9 @@ RSpec.describe "Orders", type: :request do
   # #   request.headers.merge!(user.create_new_auth_token)
   # # end
 
-  describe "GET /orders" do
+  describe "GET /users" do
     xit "works! (now write some real specs)" do
-      get orders_path
+      get users_path
       expect(response).to have_http_status(200)
     end
   end
