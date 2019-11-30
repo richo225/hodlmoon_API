@@ -31,7 +31,7 @@ module HodlmoonApi
         origins 'localhost:3000'
         resource '*',
           headers: :any,
-          methods: [:get, :post, :options, :delete],
+          methods: [:get, :post, :put, :options, :delete],
           expose: ['access-token', 'uid', 'client']
       end
     end
