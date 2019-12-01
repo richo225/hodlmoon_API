@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RetrieveCoins, :vcr do
@@ -10,7 +11,7 @@ RSpec.describe RetrieveCoins, :vcr do
     end
 
     it 'returns the coin attributes' do
-      fields = %w[id name symbol quote]
+      fields = %w(id name symbol quote)
       expect(response.parsed_response['data'].first.keys)
         .to include(*fields)
     end
