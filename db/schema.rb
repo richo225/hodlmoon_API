@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191129204043) do
+ActiveRecord::Schema.define(version: 20191201160632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20191129204043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.integer "circulating_supply"
-    t.integer "total_supply"
-    t.integer "max_supply"
+    t.bigint "circulating_supply"
+    t.bigint "total_supply"
+    t.bigint "max_supply"
     t.integer "cmc_rank"
   end
 
