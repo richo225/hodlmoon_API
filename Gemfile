@@ -15,7 +15,7 @@ gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.2'
 gem 'rspec-rails', '~> 3.7.2'
 gem 'whenever'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
