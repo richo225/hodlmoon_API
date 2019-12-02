@@ -6,7 +6,7 @@ RSpec.describe CoinsController, type: :controller do
   describe "GET #index" do
     it "returns a success response" do
       get :index, params: {}
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -14,7 +14,7 @@ RSpec.describe CoinsController, type: :controller do
     it "returns a success response" do
       get :show, params: { id: coin.to_param }
 
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 end

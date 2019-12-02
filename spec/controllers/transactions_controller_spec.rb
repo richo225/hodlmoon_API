@@ -30,7 +30,7 @@ RSpec.describe TransactionsController, type: :controller do
       transaction = create(:transaction, user: user)
 
       get :index, params: {}
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe TransactionsController, type: :controller do
       transaction = create(:transaction, user: user)
       get :show, params: {id: transaction.to_param}
 
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
