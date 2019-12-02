@@ -7,4 +7,8 @@ class CoinResource < JSONAPI::Resource
   def icon_url
     url_for(@model.icon)
   end
+
+  def self.default_sort
+    [{ field: 'cmc_rank', direction: :asc }]
+  end
 end
