@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe RetrieveCoins, :vcr do
-  let(:response) { described_class.call }
+RSpec.describe CoinMarketCap::RetrieveCoins, :vcr do
+  subject(:response) { described_class.call }
 
   describe '#call' do
     it 'returns 200' do
