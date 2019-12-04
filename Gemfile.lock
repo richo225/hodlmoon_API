@@ -121,6 +121,8 @@ GEM
       i18n (>= 0.7)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffi (1.10.0)
     gherkin (5.1.0)
     globalid (0.4.2)
@@ -134,10 +136,6 @@ GEM
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.2)
     json (2.1.0)
-    jsonapi-resources (0.10.1)
-      activerecord (>= 4.1)
-      concurrent-ruby
-      railties (>= 4.1)
     jwt (2.1.0)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -327,8 +325,8 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker (~> 1.9.1)
+  fast_jsonapi
   httparty (~> 0.16.2)
-  jsonapi-resources
   listen (~> 3.0.5)
   mini_magick
   money-rails (~> 1.12)
