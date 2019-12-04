@@ -8,6 +8,7 @@ VCR.configure do |config|
   }
 
   config.filter_sensitive_data('<COINMARKETCAP_API_KEY>') { ENV['COINMARKETCAP_API_KEY'] }
+  config.filter_sensitive_data('<CRYPTOCOMPARE_API_KEY>') { ENV['CRYPTOCOMPARE_API_KEY'] }
 
   config.ignore_request do |request|
     URI(request.uri).path == '/__identify__'
