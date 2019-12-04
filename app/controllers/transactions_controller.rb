@@ -4,14 +4,12 @@ class TransactionsController < ApplicationController
 
   # GET /transactions
   def index
-    @transactions = current_user.transactions
-
-    render json: @transactions
+    render json: TransactionSerializer.new(Transaction.all).serialized_json
   end
 
   # GET /transactions/1
   def show
-    render json: @transaction
+    render json: TransactionSerializer.new(@transaction).serialized_json
   end
 
   # POST /transactions
