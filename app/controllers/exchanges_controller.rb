@@ -3,7 +3,7 @@ class ExchangesController < ApplicationController
 
   # GET /exchanges
   def index
-    @exchanges = Exchange.order(:name)
+    @exchanges = Exchange.all
     render json: ExchangeSerializer.new(@exchanges).serialized_json
   end
 

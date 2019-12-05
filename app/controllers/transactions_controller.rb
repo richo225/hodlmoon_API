@@ -52,7 +52,7 @@ class TransactionsController < ApplicationController
       :amount,
       :price,
       :price_currency,
-      :exchange
+      :exchange_id
     )
   end
 end

@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe TransactionsController, type: :controller do
   let(:user) { create(:user) }
   let(:coin) { create(:coin) }
+  let(:exchange) { create(:exchange) }
 
   let(:valid_attributes) do
     {
@@ -11,7 +12,7 @@ RSpec.describe TransactionsController, type: :controller do
       amount: 5,
       price: 1.20,
       price_currency: 'gbp',
-      exchange: 'coinbase'
+      exchange_id: exchange.id
     }
   end
   let(:invalid_attributes) do
@@ -72,8 +73,9 @@ RSpec.describe TransactionsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
+      let(:new_exchange) { create(:exchange) }
       let(:new_attributes) {
-        { exchange: 'new_exchange' }
+        { exchange_id: new_exchange.id }
       }
 
       it "updates the requested transaction" do
@@ -81,7 +83,7 @@ RSpec.describe TransactionsController, type: :controller do
         put :update, params: { id: transaction.to_param, transaction: new_attributes }
 
         transaction.reload
-        expect(transaction.exchange).to eq('new_exchange')
+        expect(transaction.exchange).to eq(new_exchange)
       end
 
       it "renders a JSON response with the transaction" do

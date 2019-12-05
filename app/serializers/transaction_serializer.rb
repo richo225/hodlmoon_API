@@ -24,6 +24,15 @@ class TransactionSerializer
     }
   }
 
+  belongs_to :exchange, links: {
+    object: ->(transaction) {
+      "/exchanges/#{transaction.exchange_id}"
+    },
+    name: ->(transaction) {
+      transaction.exchange.name
+    }
+  }
+
   attribute :created_at do |transaction|
     I18n.l(transaction.created_at, format: :long)
   end

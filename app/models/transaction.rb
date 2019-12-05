@@ -7,6 +7,7 @@ class Transaction < ApplicationRecord
 
   belongs_to :user
   belongs_to :coin
+  belongs_to :exchange
 
   validates_numericality_of :amount, greater_than: 0
   validates_presence_of :coin, :amount, :price_currency, :exchange
