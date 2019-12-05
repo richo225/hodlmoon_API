@@ -1,7 +1,64 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+EXCHANGE_NAMES = %w(
+  HitBTC
+  Huobi Global
+  Binance
+  Bitfinex
+  Kraken
+  OKEx
+  Coinbase Pro
+  Bittrex
+  DigiFinex
+  Bithumb
+  Bitstamp
+  MXC
+  KuCoin
+  ZBG
+  Poloniex
+  Gate.io
+  Liquid
+  LakeBTC
+  Exmo
+  BigONE
+  Gemini
+  OKCoin
+  CoinEx
+  Lykke Exchange
+  Coineal
+  Coinone
+  Exrates
+  Bibox
+  IDAX
+  Bitlish
+  ZB.COM
+  CoinBene
+  LBank
+  Korbit
+  BitBay
+  Bitbank
+  P2PB2B
+  IDEX
+  FCoin
+  OceanEx
+  Bitso
+  BitForex
+  C2CX
+  BitMart
+  BTC Markets
+  Coincheck
+  Coinfloor
+  Binance Jersey
+  Luno
+  STEX
+  Livecoin
+  YoBit
+  The Rock Trading
+  COSS
+  SouthXchange
+  EXX
+  BTC-Alpha
+  VinDAX
+  Tidex
+  Coinsuper
+).freeze
+
+Exchange.import([:name], EXCHANGE_NAMES.map { |item| [item] })
