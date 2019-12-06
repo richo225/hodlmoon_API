@@ -17,7 +17,8 @@ class TransactionsController < ApplicationController
     @transaction = current_user.transactions.new(transaction_params)
 
     if @transaction.save
-      render json: @transaction, status: :created, location: @transaction
+      render json: TransactionSerializer.new(@transaction).serialized_json,
+             status: :created, location: @transaction
     else
       render json: @transaction.errors, status: :unprocessable_entity
     end
