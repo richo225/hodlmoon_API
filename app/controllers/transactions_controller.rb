@@ -4,14 +4,12 @@ class TransactionsController < ApplicationController
 
   # GET /transactions
   def index
-    @transactions = current_user.transactions
-
-    render json: @transactions
+    render json: TransactionSerializer.new(Transaction.all).serialized_json
   end
 
   # GET /transactions/1
   def show
-    render json: @transaction
+    render json: TransactionSerializer.new(@transaction).serialized_json
   end
 
   # POST /transactions
@@ -19,7 +17,8 @@ class TransactionsController < ApplicationController
     @transaction = current_user.transactions.new(transaction_params)
 
     if @transaction.save
-      render json: @transaction, status: :created, location: @transaction
+      render json: TransactionSerializer.new(@transaction).serialized_json,
+             status: :created, location: @transaction
     else
       render json: @transaction.errors, status: :unprocessable_entity
     end
@@ -54,7 +53,7 @@ class TransactionsController < ApplicationController
       :amount,
       :price,
       :price_currency,
-      :exchange
+      :exchange_id
     )
   end
 end

@@ -42,3 +42,5 @@ bower.json
 
 # Ignore imported coin data
 lib/import/coins.json
+
+storage/
