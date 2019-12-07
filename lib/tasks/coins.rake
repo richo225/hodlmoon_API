@@ -35,7 +35,7 @@ namespace :coins do
     start_time = Time.now
 
     puts 'Retrieving coins from CoinMarketCap.....'
-    coins = RetrieveCoins.call.parsed_response['data']
+    coins = CoinMarketCap::RetrieveCoins.call.parsed_response['data']
 
     puts "#{coins.count} total coins found"
 

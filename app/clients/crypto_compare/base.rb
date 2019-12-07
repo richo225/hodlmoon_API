@@ -17,7 +17,7 @@ module CryptoCompare
     end
 
     def host
-      'https://min-api.cryptocompare.com'
+      ENV.fetch('CRYPTOCOMPARE_URL')
     end
 
     def headers

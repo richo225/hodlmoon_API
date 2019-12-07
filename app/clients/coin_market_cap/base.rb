@@ -19,7 +19,7 @@ module CoinMarketCap
     end
 
     def host
-      'https://sandbox-api.coinmarketcap.com'
+      ENV.fetch('COINMARKETCAP_URL')
     end
 
     def headers
