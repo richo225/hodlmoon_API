@@ -19,10 +19,47 @@ namespace :coins do
     puts "Completed in #{Time.now - start_time} seconds"
   end
 
+  desc 'Retrieve the latest coins from CoinMarkertCap and seed db'
+  task seed_db: :environment do
+    start_time = Time.now
+
+    COIN_COLUMNS = %i(
+      coinmarketcap_id
+      name
+      symbol
+      slug
+      circulating_supply
+      total_supply
+      max_supply
+      cmc_rank
+    ).freeze
+
+    puts 'Retrieving coins from CoinMarketCap.....'
+
+    coins = CoinMarketCap::RetrieveCoins.call.parsed_response['data'].map(&:symbolize_keys!)
+
+    puts "#{coins.count} total coins found"
+
+    puts 'sorting coins ..............'
+    coins.sort_by! { |coin| coin[:cmc_rank] }
+
+    puts 'renaming ids .................'
+    coins.each { |coin| coin[:coinmarketcap_id] = coin.delete :id }
+
+    puts 'Importing coins to database......'
+    Coin.import(
+      COIN_COLUMNS,
+      coins,
+      validate: false
+    )
+
+    puts "Completed in #{Time.now - start_time} seconds"
+  end
+
   desc 'Retrieve the latest coins from CoinMarkertCap and update db'
   task update_db: :environment do
     COIN_COLUMNS = %i(
-      id
+      coinmarketcap_id
       name
       symbol
       slug
@@ -35,14 +72,14 @@ namespace :coins do
     start_time = Time.now
 
     puts 'Retrieving coins from CoinMarketCap.....'
-    coins = CoinMarketCap::RetrieveCoins.call.parsed_response['data']
+    coins = RetrieveCoins.call.parsed_response['data']
 
     puts "#{coins.count} total coins found"
 
     puts 'Importing coins to database......'
     values = coins.map(&:symbolize_keys)
 
-    UPSERT_COLUMNS = COIN_COLUMNS - [:id]
+    UPSERT_COLUMNS = COIN_COLUMNS - [:coinmarketcap_id]
 
     Coin.import(
       COIN_COLUMNS,
