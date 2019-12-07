@@ -17,18 +17,14 @@ gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
+gem 'rack-cors'
 gem 'rails', '~> 5.2'
-gem 'rspec-rails', '~> 3.7.2'
 gem 'whenever'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+group :production do
+  gem 'dalli'
+end
+
 group :development, :test do
   gem 'coveralls', require: false
   gem 'cucumber-rails', require: false
@@ -37,7 +33,6 @@ group :development, :test do
   gem 'faker', '~> 1.9.1'
   gem 'pry'
   gem 'pry-byebug'
-  gem 'rack-cors'
   gem 'shoulda-matchers'
 end
 
@@ -49,6 +44,7 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-rails', '~> 3.7.2'
   gem 'vcr'
   gem 'webmock', '~> 3.7'
 end
