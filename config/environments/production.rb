@@ -53,7 +53,7 @@ Rails.application.configure do
                        { username: ENV.fetch('MEMCACHEDCLOUD_USERNAME'),
                          password: ENV.fetch('MEMCACHEDCLOUD_PASSWORD') }
 
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "hodlmoon_api_#{Rails.env}"
