@@ -53,7 +53,7 @@ Rails.application.configure do
                        { username: ENV.fetch('MEMCACHEDCLOUD_USERNAME'),
                          password: ENV.fetch('MEMCACHEDCLOUD_PASSWORD') }
 
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "hodlmoon_api_#{Rails.env}"
@@ -101,4 +101,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  Rails.application.routes.default_url_options[:host] = ENV.fetch('HODLMOON_API_URL')
 end

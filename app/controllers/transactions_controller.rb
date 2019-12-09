@@ -20,7 +20,7 @@ class TransactionsController < ApplicationController
       render json: TransactionSerializer.new(@transaction).serialized_json,
              status: :created, location: @transaction
     else
-      render json: @transaction.errors, status: :unprocessable_entity
+      render_error
     end
   end
 
@@ -29,7 +29,7 @@ class TransactionsController < ApplicationController
     if @transaction.update(transaction_params)
       render json: @transaction
     else
-      render json: @transaction.errors, status: :unprocessable_entity
+      render_error
     end
   end
 
@@ -55,5 +55,12 @@ class TransactionsController < ApplicationController
       :price_currency,
       :exchange_id
     )
+  end
+
+  def render_error
+    render json: {
+      status: 'error',
+      errors: @transaction.errors.full_messages
+    }, status: :unprocessable_entity
   end
 end

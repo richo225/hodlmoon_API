@@ -22,6 +22,7 @@ gem 'rails', '~> 5.2'
 gem 'whenever'
 
 group :production do
+  gem "aws-sdk-s3", require: false
   gem 'dalli'
 end
 
