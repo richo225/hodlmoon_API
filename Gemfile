@@ -24,6 +24,7 @@ gem 'whenever'
 group :production do
   gem "aws-sdk-s3", require: false
   gem 'dalli'
+  gem 'newrelic_rpm'
 end
 
 group :development, :test do

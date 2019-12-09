@@ -186,6 +186,7 @@ GEM
     multi_test (0.1.2)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    newrelic_rpm (5.4.0.347)
     nio4r (2.5.2)
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
@@ -349,6 +350,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mini_magick
   money-rails (~> 1.12)
+  newrelic_rpm
   omniauth-facebook
   omniauth-github
   omniauth-google-oauth2
