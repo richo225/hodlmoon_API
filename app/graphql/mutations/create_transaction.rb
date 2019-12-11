@@ -5,14 +5,16 @@ module Mutations
     argument :price, Float, required: true
     argument :exchange_id, ID, required: true
     argument :coin_id, ID, required: true
-    argument :user_id, ID, required: true
 
     field :transaction, Types::TransactionType, null: false
     field :errors, [String], null: false
 
     def resolve(transaction_params)
-      transaction = Transaction.new(transaction_params)
+      user = context[:current_user]
 
+      raise GraphQL::ExecutionError, 'Authentication required' if user.blank?
+
+      transaction = user.transactions.new(transaction_params)
       if transaction.save
         {
           transaction: transaction,
