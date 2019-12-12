@@ -19,6 +19,11 @@ RSpec.describe 'Coin' do
       expect(coin).to_not be_valid
     end
 
+    it 'is invalid without cmc_rank' do
+      coin = build(:coin, cmc_rank: nil)
+      expect(coin).to_not be_valid
+    end
+
     it 'is invalid without attached icon' do
       coin = build(:coin, icon: nil)
       expect(coin).to_not be_valid

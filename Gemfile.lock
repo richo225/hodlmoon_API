@@ -143,6 +143,7 @@ GEM
     gherkin (5.1.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    graphql (1.9.16)
     hashdiff (1.0.0)
     hashie (3.6.0)
     httparty (0.16.4)
@@ -345,6 +346,7 @@ DEPENDENCIES
   factory_bot_rails
   faker (~> 1.9.1)
   fast_jsonapi
+  graphql
   httparty (~> 0.16.2)
   listen (~> 3.0.5)
   mini_magick

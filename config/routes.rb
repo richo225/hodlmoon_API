@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post "/graphql", to: "graphql#execute"
   mount_devise_token_auth_for 'User', at: 'auth'
   resources :transactions
   resources :news, only: [:index]
