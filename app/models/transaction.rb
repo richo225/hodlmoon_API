@@ -20,6 +20,11 @@ class Transaction < ApplicationRecord
 
   scope :buy, -> { where(process: :buy) }
   scope :sell, -> { where(process: :sell) }
+  scope :for_coin, ->(coin) {
+    return if coin.blank?
+
+    where(coin: coin)
+  }
 
   PROCESSES.each do |process_name|
     define_method("#{process_name}?") do

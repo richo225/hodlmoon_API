@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_14_153010) do
+ActiveRecord::Schema.define(version: 2019_12_14_161547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,12 +40,13 @@ ActiveRecord::Schema.define(version: 2019_12_14_153010) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "coin_id"
-    t.float "price"
     t.bigint "market_cap"
     t.bigint "volume_24h"
     t.float "percent_change_1h"
     t.float "percent_change_24h"
     t.float "percent_change_7d"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "GBP", null: false
     t.index ["coin_id"], name: "index_coin_prices_on_coin_id"
   end
 
@@ -71,11 +72,17 @@ ActiveRecord::Schema.define(version: 2019_12_14_153010) do
     t.bigint "user_id"
     t.bigint "coin_id"
     t.integer "total_amount"
-    t.integer "total_price"
-    t.integer "total_profit_loss"
-    t.integer "price_change_1h"
-    t.integer "price_change_24h"
-    t.integer "price_change_7d"
+    t.integer "total_price_cents", default: 0, null: false
+    t.string "total_price_currency", default: "GBP", null: false
+    t.integer "total_profit_loss_cents", default: 0, null: false
+    t.string "total_profit_loss_currency", default: "GBP", null: false
+    t.float "total_profit_loss_percentage"
+    t.integer "price_change_1h_cents", default: 0, null: false
+    t.string "price_change_1h_currency", default: "GBP", null: false
+    t.integer "price_change_24h_cents", default: 0, null: false
+    t.string "price_change_24h_currency", default: "GBP", null: false
+    t.integer "price_change_7d_cents", default: 0, null: false
+    t.string "price_change_7d_currency", default: "GBP", null: false
     t.index ["coin_id"], name: "index_holdings_on_coin_id"
     t.index ["user_id"], name: "index_holdings_on_user_id"
   end
@@ -87,7 +94,7 @@ ActiveRecord::Schema.define(version: 2019_12_14_153010) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "EUR", null: false
+    t.string "price_currency", default: "GBP", null: false
     t.bigint "user_id"
     t.bigint "coin_id"
     t.bigint "exchange_id"

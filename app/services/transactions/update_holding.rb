@@ -9,11 +9,15 @@ module Transactions
     end
 
     def call
-      holding.increment!('amount', transaction_amount)
-      holding.reload!
+      holding.increment!('total_amount', transaction_amount)
+      holding.reload
       holding.update!(
         total_price: total_price,
-        total_profit_loss: total_profit_loss
+        total_profit_loss: total_profit_loss,
+        total_profit_loss_percentage: total_profit_loss_percentage,
+        price_change_1h: price_change_1h,
+        price_change_24h: price_change_24h,
+        price_change_7d: price_change_7d
       )
     end
 
@@ -22,11 +26,11 @@ module Transactions
     attr_accessor :transaction
 
     def user
-      @user ||= User.find(user_id)
+      @user ||= User.find(transaction.user_id)
     end
 
     def coin
-      @coin ||= Coin.find(coin_id)
+      @coin ||= Coin.find(transaction.coin_id)
     end
 
     def holding
@@ -38,19 +42,35 @@ module Transactions
     end
 
     def total_price
-      holding.amount * coin.price
+      holding.total_amount * coin.coin_price.price
     end
 
     def total_profit_loss
-      (total_buys - total_sells) + total_holding_price
+      (total_sells - total_buys) + total_price
+    end
+
+    def total_profit_loss_percentage
+      (total_profit_loss / total_buys) * 100
     end
 
     def total_buys
-      user.transactions.buy.map(&:total_price).sum
+      user.transactions.for_coin(coin).buy.map(&:total_price).sum
     end
 
     def total_sells
-      user.transactions.sell.map(&:total_price).sum
+      user.transactions.for_coin(coin).sell.map(&:total_price).sum
+    end
+
+    def price_change_1h
+      total_price * (coin.coin_price.percent_change_1h / 100)
+    end
+
+    def price_change_24h
+      total_price * (coin.coin_price.percent_change_24h / 100)
+    end
+
+    def price_change_7d
+      total_price * (coin.coin_price.percent_change_7d / 100)
     end
   end
 end
