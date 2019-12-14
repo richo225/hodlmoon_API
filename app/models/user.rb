@@ -7,4 +7,6 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   has_many :transactions
+  has_many :coins, through: :transactions
+  has_many :holdings, through: :coins
 end

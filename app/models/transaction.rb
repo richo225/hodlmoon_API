@@ -13,8 +13,19 @@ class Transaction < ApplicationRecord
   validates_presence_of :coin, :amount, :price_currency, :exchange
   validates_inclusion_of :process, in: PROCESSES
 
+  after_create :update_holding
+
   monetize :price_cents, with_model_currency: :currency
   monetize :total_price_cents, with_model_currency: :currency
+
+  scope :buy, -> { where(process: :buy) }
+  scope :sell, -> { where(process: :sell) }
+
+  PROCESSES.each do |process_name|
+    define_method("#{process_name}?") do
+      process == process_name.to_s
+    end
+  end
 
   def humanised_price
     humanized_money_with_symbol(price)
@@ -28,5 +39,9 @@ class Transaction < ApplicationRecord
 
   def humanised_total_price
     humanized_money_with_symbol(total_price)
+  end
+
+  def update_holding
+    Transactions::UpdateHolding.call(transaction: self)
   end
 end
