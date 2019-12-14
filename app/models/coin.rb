@@ -2,6 +2,7 @@
 
 class Coin < ApplicationRecord
   has_one :holding
+  has_one :coin_price
   has_one_attached :icon
 
   validates_presence_of :name, :symbol, :cmc_rank

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_13_171424) do
+ActiveRecord::Schema.define(version: 2019_12_14_153010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,15 +36,25 @@ ActiveRecord::Schema.define(version: 2019_12_13_171424) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "coin_prices", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "coin_id"
+    t.float "price"
+    t.bigint "market_cap"
+    t.bigint "volume_24h"
+    t.float "percent_change_1h"
+    t.float "percent_change_24h"
+    t.float "percent_change_7d"
+    t.index ["coin_id"], name: "index_coin_prices_on_coin_id"
+  end
+
   create_table "coins", force: :cascade do |t|
     t.string "name"
     t.string "symbol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.bigint "circulating_supply"
-    t.bigint "total_supply"
-    t.bigint "max_supply"
     t.integer "cmc_rank"
     t.integer "coinmarketcap_id"
   end
