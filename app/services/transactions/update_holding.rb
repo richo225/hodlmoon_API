@@ -19,6 +19,8 @@ module Transactions
         price_change_24h: price_change_24h,
         price_change_7d: price_change_7d
       )
+
+      UpdatePortfolio.call(user: user)
     end
 
     private

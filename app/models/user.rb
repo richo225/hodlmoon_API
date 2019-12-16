@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :transactions
   has_many :coins, through: :transactions
   has_many :holdings, through: :coins
+  has_one :portfolio
 end

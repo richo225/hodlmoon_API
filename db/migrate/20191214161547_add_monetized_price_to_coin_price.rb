@@ -16,6 +16,6 @@ class AddMonetizedPriceToCoinPrice < ActiveRecord::Migration[5.2]
     add_monetize :holdings, :price_change_24h, currency: { present: false }
     add_monetize :holdings, :price_change_7d, currency: { present: false }
 
-    change_column :holdings, :amount, :integer, default: 0
+    change_column :holdings, :total_amount, :integer, default: 0
   end
 end
