@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_07_165943) do
+ActiveRecord::Schema.define(version: 2019_12_16_193202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,15 +36,25 @@ ActiveRecord::Schema.define(version: 2019_12_07_165943) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "coin_prices", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "coin_id"
+    t.bigint "market_cap"
+    t.bigint "volume_24h"
+    t.float "percent_change_1h"
+    t.float "percent_change_24h"
+    t.float "percent_change_7d"
+    t.integer "price_cents", default: 0, null: false
+    t.index ["coin_id"], name: "index_coin_prices_on_coin_id"
+  end
+
   create_table "coins", force: :cascade do |t|
     t.string "name"
     t.string "symbol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.bigint "circulating_supply"
-    t.bigint "total_supply"
-    t.bigint "max_supply"
     t.integer "cmc_rank"
     t.integer "coinmarketcap_id"
   end
@@ -55,6 +65,38 @@ ActiveRecord::Schema.define(version: 2019_12_07_165943) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "holdings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "coin_id"
+    t.integer "total_amount", default: 0
+    t.integer "total_price_cents", default: 0, null: false
+    t.integer "total_profit_loss_cents", default: 0, null: false
+    t.float "total_profit_loss_percentage"
+    t.integer "price_change_1h_cents", default: 0, null: false
+    t.integer "price_change_24h_cents", default: 0, null: false
+    t.integer "price_change_7d_cents", default: 0, null: false
+    t.index ["coin_id"], name: "index_holdings_on_coin_id"
+    t.index ["user_id"], name: "index_holdings_on_user_id"
+  end
+
+  create_table "portfolios", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "total_holdings_price_cents", default: 0, null: false
+    t.integer "total_profit_loss_cents", default: 0, null: false
+    t.float "total_profit_loss_percentage", default: 0.0
+    t.integer "total_price_change_1h_cents", default: 0, null: false
+    t.integer "total_price_change_24h_cents", default: 0, null: false
+    t.integer "total_price_change_7d_cents", default: 0, null: false
+    t.float "total_price_change_1h_percentage", default: 0.0
+    t.float "total_price_change_24h_percentage", default: 0.0
+    t.float "total_price_change_7d_percentage", default: 0.0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_portfolios_on_user_id"
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.string "process"
     t.integer "amount"
@@ -62,7 +104,7 @@ ActiveRecord::Schema.define(version: 2019_12_07_165943) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "EUR", null: false
+    t.string "price_currency", default: "GBP", null: false
     t.bigint "user_id"
     t.bigint "coin_id"
     t.bigint "exchange_id"
@@ -106,6 +148,7 @@ ActiveRecord::Schema.define(version: 2019_12_07_165943) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "portfolios", "users"
   add_foreign_key "transactions", "coins"
   add_foreign_key "transactions", "exchanges"
   add_foreign_key "transactions", "users"

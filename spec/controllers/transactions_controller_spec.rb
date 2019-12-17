@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe TransactionsController, type: :controller do
   let(:user) { create(:user) }
   let(:coin) { create(:coin) }
+  let!(:coin_price) { create(:coin_price, coin: coin) }
   let(:exchange) { create(:exchange) }
 
   let(:valid_attributes) do
@@ -28,7 +29,7 @@ RSpec.describe TransactionsController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      create(:transaction, user: user)
+      create(:transaction, user: user, coin: coin)
 
       get :index, params: {}
       expect(response).to be_successful
@@ -37,7 +38,7 @@ RSpec.describe TransactionsController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      transaction = create(:transaction, user: user)
+      transaction = create(:transaction, user: user, coin: coin)
       get :show, params: { id: transaction.to_param }
 
       expect(response).to be_successful
@@ -79,7 +80,7 @@ RSpec.describe TransactionsController, type: :controller do
       }
 
       it "updates the requested transaction" do
-        transaction = create(:transaction, user: user)
+        transaction = create(:transaction, user: user, coin: coin)
         put :update, params: { id: transaction.to_param, transaction: new_attributes }
 
         transaction.reload
@@ -87,7 +88,7 @@ RSpec.describe TransactionsController, type: :controller do
       end
 
       it "renders a JSON response with the transaction" do
-        transaction = create(:transaction, user: user)
+        transaction = create(:transaction, user: user, coin: coin)
         put :update, params: { id: transaction.to_param, transaction: valid_attributes }
 
         expect(response).to have_http_status(:ok)
@@ -97,7 +98,7 @@ RSpec.describe TransactionsController, type: :controller do
 
     context "with invalid params" do
       it "renders a JSON response with errors for the transaction" do
-        transaction = create(:transaction, user: user)
+        transaction = create(:transaction, user: user, coin: coin)
         put :update, params: { id: transaction.to_param, transaction: invalid_attributes }
 
         expect(response).to have_http_status(:unprocessable_entity)
@@ -108,7 +109,7 @@ RSpec.describe TransactionsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested transaction" do
-      transaction = create(:transaction, user: user)
+      transaction = create(:transaction, user: user, coin: coin)
       expect {
         delete :destroy, params: { id: transaction.to_param }
       }.to change(user.transactions, :count).by(-1)

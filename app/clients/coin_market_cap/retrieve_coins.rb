@@ -9,7 +9,7 @@ module CoinMarketCap
     private
 
     def uri
-      "#{host}/v1/cryptocurrency/listings/latest?sort=market_cap&start=1"
+      "#{host}/v1/cryptocurrency/listings/latest?sort=market_cap&convert=GBP"
     end
   end
 end
