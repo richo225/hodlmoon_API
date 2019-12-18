@@ -9,7 +9,7 @@ module CryptoCompare
     private
 
     def uri
-      "#{host}/data/v2/news/?lang=EN&sortOrder=popular&feeds=cryptocompare,cointelegraph,coindesk"
+      "#{host}/data/v2/news/?lang=EN&sortOrder=popular&feeds=cointelegraph"
     end
   end
 end

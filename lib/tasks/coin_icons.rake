@@ -23,6 +23,10 @@ namespace :coin_icons do
       puts "#{file_name} attached successfully"
     end
 
+    puts "Removing coins without attached icons......"
+    ids = Coin.select(&:invalid?).pluck(:id)
+    Coin.destroy(ids)
+
     puts "Completed in #{Time.now - start_time} seconds"
   end
 end
