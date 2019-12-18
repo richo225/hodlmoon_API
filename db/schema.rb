@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_193202) do
+ActiveRecord::Schema.define(version: 2019_12_18_014853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_193202) do
     t.string "slug"
     t.integer "cmc_rank"
     t.integer "coinmarketcap_id"
+    t.integer "coinio_id"
   end
 
   create_table "exchanges", force: :cascade do |t|

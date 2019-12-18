@@ -19,6 +19,9 @@ class HoldingSerializer
     symbol: ->(holding) {
       holding.coin.symbol
     },
+    coinio_id: ->(holding) {
+      holding.coin.coinio_id
+    },
     icon_url: ->(holding) {
       Rails.application.routes.url_helpers.url_for(holding.coin.icon)
     }
