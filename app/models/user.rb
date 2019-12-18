@@ -6,8 +6,8 @@ class User < ApplicationRecord
          :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :transactions
-  has_many :holdings
+  has_one :portfolio, dependent: :destroy
+  has_many :transactions, dependent: :destroy
+  has_many :holdings, dependent: :destroy
   has_many :coins, through: :holdings
-  has_one :portfolio
 end

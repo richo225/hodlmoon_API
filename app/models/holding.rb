@@ -27,6 +27,6 @@ class Holding < ApplicationRecord
   end
 
   def humanised_price_change_7d
-    humanized_money_with_symbol(price_change_7d_cents)
+    humanized_money_with_symbol(price_change_7d)
   end
 end
