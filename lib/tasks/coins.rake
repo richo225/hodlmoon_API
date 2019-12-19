@@ -50,6 +50,7 @@ namespace :coins do
     puts 'Importing coin price data to database......'
     response.each do |d|
       coin = Coin.find_by(coinmarketcap_id: d['id'])
+      next unless coin
 
       coin_price = CoinPrice.find_or_create_by(coin_id: coin.id)
       coin_price.update!(
