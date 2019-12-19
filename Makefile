@@ -14,4 +14,4 @@ compose-run:
 	sleep 20
 
 tests:
-	docker-compose run web bundle exec rake spec
+	docker-compose run web bundle exec rspec
