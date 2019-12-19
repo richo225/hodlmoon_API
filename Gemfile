@@ -28,7 +28,6 @@ group :production do
 end
 
 group :development, :test do
-  gem 'coveralls', require: false
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails'
@@ -46,6 +45,7 @@ group :development do
 end
 
 group :test do
+  gem 'codecov', require: false
   gem 'rspec-rails', '~> 3.7.2'
   gem 'vcr'
   gem 'webmock', '~> 3.7'
