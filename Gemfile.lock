@@ -33,7 +33,7 @@ GEM
       activemodel (= 5.2.4)
       activesupport (= 5.2.4)
       arel (>= 9.0)
-    activerecord-import (0.28.2)
+    activerecord-import (1.0.3)
       activerecord (>= 3.2)
     activestorage (5.2.4)
       actionpack (= 5.2.4)
@@ -335,7 +335,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-import (~> 0.28.0)
+  activerecord-import (~> 1.0.3)
   aws-sdk-s3
   coveralls
   cucumber-rails
