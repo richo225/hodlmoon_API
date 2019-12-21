@@ -46,7 +46,7 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 3.7.2'
+  gem 'rspec-rails', '~> 3.9.0'
   gem 'vcr'
   gem 'webmock', '~> 3.7'
 end
