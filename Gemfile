@@ -32,7 +32,7 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'factory_bot_rails'
-  gem 'faker', '~> 1.9.1'
+  gem 'faker', '~> 2.9.0'
   gem 'pry'
   gem 'pry-byebug'
   gem 'shoulda-matchers'
