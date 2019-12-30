@@ -140,7 +140,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
-    ffi (1.10.0)
+    ffi (1.11.3)
     gherkin (5.1.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -156,9 +156,9 @@ GEM
     jmespath (1.4.0)
     json (2.3.0)
     jwt (2.2.1)
-    listen (3.0.8)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
+    listen (3.2.1)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -258,7 +258,7 @@ GEM
     rainbow (3.0.0)
     rake (13.0.1)
     rb-fsevent (0.10.3)
-    rb-inotify (0.10.0)
+    rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (1.3.0)
     responders (3.0.0)
@@ -348,7 +348,7 @@ DEPENDENCIES
   fast_jsonapi
   graphql
   httparty (~> 0.17.3)
-  listen (~> 3.0.5)
+  listen (~> 3.2.1)
   mini_magick
   money-rails (~> 1.13.3)
   omniauth-facebook
