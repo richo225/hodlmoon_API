@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'activerecord-import', '~> 1.0.3'
+gem 'activerecord-import', '~> 1.0.4'
 gem 'devise_token_auth'
 gem 'dotenv-rails'
 gem 'fast_jsonapi'
