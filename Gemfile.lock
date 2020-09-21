@@ -78,7 +78,7 @@ GEM
       xpath (~> 3.2)
     chronic (0.10.2)
     coderay (1.1.2)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.7)
     coveralls (0.8.23)
       json (>= 1.8, < 3)
       simplecov (~> 0.16.1)
@@ -134,7 +134,7 @@ GEM
     factory_bot_rails (5.1.1)
       factory_bot (~> 5.1.0)
       railties (>= 4.2.0)
-    faker (2.10.1)
+    faker (2.14.0)
       i18n (>= 1.6, < 2)
     faraday (0.17.1)
       multipart-post (>= 1.2, < 3)
@@ -150,7 +150,7 @@ GEM
     httparty (0.17.3)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
-    i18n (1.8.2)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
     jmespath (1.4.0)
@@ -344,7 +344,7 @@ DEPENDENCIES
   devise_token_auth
   dotenv-rails
   factory_bot_rails
-  faker (~> 2.10.1)
+  faker (~> 2.14.0)
   fast_jsonapi
   graphql
   httparty (~> 0.17.3)
