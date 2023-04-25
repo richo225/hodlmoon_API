@@ -1,18 +1,19 @@
 # Base image
 FROM ruby:2.7.0
+
+ENV BUNDLER_VERSION=2.3.24
+
 RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends
 
-WORKDIR /app
-COPY Gemfile* /app/
-ENV BUNDLE_PATH /bundler_gems
-RUN bundle install
-COPY . /app
+RUN gem install bundler -v 2.3.24
 
-# Add a script to be executed every time the container starts.
-#COPY entrypoint.sh /usr/bin/
-#RUN chmod +x /usr/bin/entrypoint.sh
-#ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
+WORKDIR /app
+
+COPY Gemfile Gemfile.lock ./
+
+RUN bundle check || bundle install
+COPY . ./
 
 # Start the main process.
+EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"]
