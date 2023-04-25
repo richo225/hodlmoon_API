@@ -20,7 +20,7 @@ gem 'omniauth-google-oauth2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'rack-cors'
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 6.0'
 gem 'whenever'
 
 group :production do
