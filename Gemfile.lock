@@ -47,7 +47,7 @@ GEM
     activerecord (6.1.7.3)
       activemodel (= 6.1.7.3)
       activesupport (= 6.1.7.3)
-    activerecord-import (0.28.2)
+    activerecord-import (1.0.8)
       activerecord (>= 3.2)
     activestorage (6.1.7.3)
       actionpack (= 6.1.7.3)
@@ -260,7 +260,7 @@ GEM
     parallel (1.23.0)
     parser (3.2.2.1)
       ast (~> 2.4.1)
-    pg (0.21.0)
+    pg (1.5.1)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -399,7 +399,7 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
-  activerecord-import (~> 0.28.0)
+  activerecord-import (~> 1.0)
   aws-sdk-s3
   coveralls
   cucumber-rails
@@ -418,7 +418,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-github
   omniauth-google-oauth2
-  pg (~> 0.18)
+  pg (~> 1.2)
   pry
   pry-byebug
   puma (~> 3.0)

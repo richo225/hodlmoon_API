@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'activerecord-import', '~> 0.28.0'
+gem 'activerecord-import', '~> 1.0'
 gem 'devise_token_auth'
 gem 'dotenv-rails'
 gem 'fast_jsonapi'
@@ -16,7 +16,7 @@ gem 'money-rails', '~> 1.13.3'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 1.2'
 gem 'puma', '~> 3.0'
 gem 'rack-cors'
 gem 'rails', '~> 6.0'
