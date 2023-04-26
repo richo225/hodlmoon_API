@@ -57,7 +57,7 @@ RSpec.describe TransactionsController, type: :controller do
         post :create, params: { transaction: valid_attributes }
 
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to eq('application/json')
+        expect(response.content_type).to eq('application/json; charset=utf-8')
         expect(response.location).to eq(transaction_url(user.transactions.last))
       end
     end
@@ -67,7 +67,7 @@ RSpec.describe TransactionsController, type: :controller do
         post :create, params: { transaction: invalid_attributes }
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json')
+        expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
   end
@@ -92,7 +92,7 @@ RSpec.describe TransactionsController, type: :controller do
         put :update, params: { id: transaction.to_param, transaction: valid_attributes }
 
         expect(response).to have_http_status(:ok)
-        expect(response.content_type).to eq('application/json')
+        expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
 
@@ -102,7 +102,7 @@ RSpec.describe TransactionsController, type: :controller do
         put :update, params: { id: transaction.to_param, transaction: invalid_attributes }
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json')
+        expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
   end

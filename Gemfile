@@ -5,21 +5,21 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'activerecord-import', '~> 0.28.0'
+gem 'activerecord-import', '~> 1.0'
 gem 'devise_token_auth'
 gem 'dotenv-rails'
 gem 'fast_jsonapi'
 gem 'graphql'
 gem 'httparty', '~> 0.16.2'
 gem 'mini_magick'
-gem 'money-rails', '~> 1.13.3'
+gem 'money-rails', '~> 1.14.0'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 1.2'
 gem 'puma', '~> 3.0'
 gem 'rack-cors'
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 6.0'
 gem 'whenever'
 
 group :production do
@@ -41,12 +41,10 @@ end
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'rubocop', require: false
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
-  gem 'rspec-rails', '~> 3.7.2'
+  gem 'rspec-rails', '~> 5.0.1'
   gem 'vcr'
   gem 'webmock', '~> 3.7'
 end

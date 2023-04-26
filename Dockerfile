@@ -1,24 +1,19 @@
 # Base image
-FROM ruby:2.6
+FROM ruby:2.7.0
 
-# Install dependencies
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+ENV BUNDLER_VERSION=2.3.24
 
-# Create and set working directory
-RUN mkdir /app
+RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends
+
+RUN gem install bundler -v 2.3.24
+
 WORKDIR /app
 
-# Copy gemfile and install gems
-COPY Gemfile* ./
+COPY Gemfile Gemfile.lock ./
 
-RUN gem update --system && \
-gem update bundler && \
-bundle install --jobs 4 --retry 5
+RUN bundle check || bundle install
+COPY . ./
 
-# Copy application code
-COPY . .
-
+# Start the main process.
 EXPOSE 3000
-
-# Run the app
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
