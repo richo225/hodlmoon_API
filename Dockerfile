@@ -15,5 +15,5 @@ RUN bundle check || bundle install
 COPY . ./
 
 # Start the main process.
-EXPOSE 3000
+EXPOSE $PORT
 CMD ["rails", "server", "-b", "0.0.0.0"]
